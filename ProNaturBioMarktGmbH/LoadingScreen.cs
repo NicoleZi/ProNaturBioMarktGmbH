@@ -31,7 +31,14 @@ namespace ProNaturBioMarktGmbH
             labelProcent.Text = loadingBarValue.ToString() + "%";
 
             if (loadingBarValue >= progressBarLoading.Maximum)
-                loadingbarTimer.Stop();          
+            {
+                loadingbarTimer.Stop();
+
+                MainMenuScreen mainMenu = new MainMenuScreen();
+                mainMenu.Show();
+                this.Hide();
+            }
+                         
         }        
     }
 }

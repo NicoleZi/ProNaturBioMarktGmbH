@@ -24,5 +24,13 @@ namespace ProNaturBioMarktGmbH
 
             this.Hide();
         }
+
+        private void ButtonBills_Click(object sender, EventArgs e)
+        {
+            BillsScreen billsScreen = new BillsScreen();
+            billsScreen.Show();
+
+            this.Hide();
+        }
     }
 }

@@ -3,18 +3,21 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Runtime.Remoting.Contexts;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Linq;
 
 namespace ProNaturBioMarktGmbH
 {
     public partial class ProductsScreen : Form
     {
         private SqlConnection connectionDatabase = new SqlConnection(@"Data Source = (LocalDB)\MSSQLLocalDB; AttachDbFilename=C:\Users\Nicole\Documents\ProNatur Bimarkt GmbH.mdf;Integrated Security = True; Connect Timeout = 30");
+        private int lastSelectedProductKey;
 
         public ProductsScreen()
         {
@@ -37,11 +40,8 @@ namespace ProNaturBioMarktGmbH
             string category = comboBoxProductCategory.Text;
             string price = textBoxProductPrice.Text;
 
-            connectionDatabase.Open();
             string query = string.Format("insert into Products values ('{0}', '{1}','{2}','{3}')", name, brand, category, price);
-            SqlCommand sqlCommand = new SqlCommand(query, connectionDatabase);
-            sqlCommand.ExecuteNonQuery();
-            connectionDatabase.Close();
+            ExecuteQuery(query);
 
             ShowProducts();
             ClearAllFields();
@@ -49,7 +49,21 @@ namespace ProNaturBioMarktGmbH
 
         private void ButtonProductEdit_Click(object sender, EventArgs e)
         {
+            if (lastSelectedProductKey == 0)
+            {
+                MessageBox.Show("Please select an item.");
+                return;
+            }
 
+            string name = textBoxProductName.Text;
+            string brand = textBoxProductBrand.Text;
+            string category = comboBoxProductCategory.Text;
+            string price = textBoxProductPrice.Text;
+
+            string query = string.Format("update Products set Name='{0}', Brand='{1}', Category='{2}', Price='{3}' where Id={4}", name, brand, category, price, lastSelectedProductKey);
+            ExecuteQuery(query);
+
+            ShowProducts();
         }
 
         private void ButtonProductClear_Click(object sender, EventArgs e)
@@ -59,7 +73,17 @@ namespace ProNaturBioMarktGmbH
 
         private void ButtonProductDelete_Click(object sender, EventArgs e)
         {
-            
+            if(lastSelectedProductKey == 0)
+            {
+                MessageBox.Show("Please select an item.");
+                return;
+            }               
+
+            string query = string.Format("delete from Products where Id={0};", lastSelectedProductKey);
+            ExecuteQuery(query);
+
+            ClearAllFields();
+            ShowProducts();
         }
 
         private void ShowProducts()
@@ -78,6 +102,14 @@ namespace ProNaturBioMarktGmbH
             connectionDatabase.Close();
         }
 
+        private void ExecuteQuery(string query)
+        {
+            connectionDatabase.Open();
+            SqlCommand sqlCommand = new SqlCommand(query, connectionDatabase);
+            sqlCommand.ExecuteNonQuery();
+            connectionDatabase.Close();
+        }
+
         private void ClearAllFields()
         {
             textBoxProductName.Text = string.Empty;
@@ -85,6 +117,16 @@ namespace ProNaturBioMarktGmbH
             textBoxProductPrice.Text = string.Empty;           
             comboBoxProductCategory.Text = string.Empty;
             comboBoxProductCategory.SelectedItem = null;
+        }
+
+        private void DataGridViewProduct_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            textBoxProductName.Text = dataGridViewProduct.SelectedRows[0].Cells[1].Value.ToString();
+            textBoxProductBrand.Text = dataGridViewProduct.SelectedRows[0].Cells[2].Value.ToString();
+            comboBoxProductCategory.Text = dataGridViewProduct.SelectedRows[0].Cells[3].Value.ToString();
+            textBoxProductPrice.Text = dataGridViewProduct.SelectedRows[0].Cells[4].Value.ToString();
+
+            lastSelectedProductKey = (int)dataGridViewProduct.SelectedRows[0].Cells[0].Value;
         }
     }
 }

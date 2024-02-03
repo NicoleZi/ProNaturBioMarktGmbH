@@ -61,6 +61,7 @@
             this.buttonBills.TabIndex = 1;
             this.buttonBills.Text = "Create bill";
             this.buttonBills.UseVisualStyleBackColor = true;
+            this.buttonBills.Click += new System.EventHandler(this.ButtonBills_Click);
             // 
             // MainMenuScreen
             // 

@@ -215,13 +215,17 @@
             this.dataGridViewProduct.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridViewProduct.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewProduct.Location = new System.Drawing.Point(12, 214);
+            this.dataGridViewProduct.MultiSelect = false;
             this.dataGridViewProduct.Name = "dataGridViewProduct";
+            this.dataGridViewProduct.ReadOnly = true;
             this.dataGridViewProduct.RowHeadersVisible = false;
             this.dataGridViewProduct.RowTemplate.DefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
             this.dataGridViewProduct.RowTemplate.DefaultCellStyle.ForeColor = System.Drawing.Color.White;
             this.dataGridViewProduct.RowTemplate.DefaultCellStyle.SelectionBackColor = System.Drawing.Color.Gray;
+            this.dataGridViewProduct.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewProduct.Size = new System.Drawing.Size(775, 235);
             this.dataGridViewProduct.TabIndex = 14;
+            this.dataGridViewProduct.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridViewProduct_CellContentClick);
             // 
             // ProductsScreen
             // 

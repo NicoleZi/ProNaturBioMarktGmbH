@@ -45,6 +45,7 @@
             this.buttonRemoveAll = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.dGVShoppingList = new System.Windows.Forms.DataGridView();
+            this.labelShoppinglist = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dGVProducts)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dGVShoppingList)).BeginInit();
             this.SuspendLayout();
@@ -53,7 +54,7 @@
             // 
             this.textBoxCostumer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
             this.textBoxCostumer.ForeColor = System.Drawing.Color.White;
-            this.textBoxCostumer.Location = new System.Drawing.Point(94, 22);
+            this.textBoxCostumer.Location = new System.Drawing.Point(121, 18);
             this.textBoxCostumer.Name = "textBoxCostumer";
             this.textBoxCostumer.Size = new System.Drawing.Size(100, 20);
             this.textBoxCostumer.TabIndex = 0;
@@ -74,11 +75,11 @@
             // 
             this.labelTotalPrice.AutoSize = true;
             this.labelTotalPrice.BackColor = System.Drawing.Color.Transparent;
-            this.labelTotalPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelTotalPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelTotalPrice.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
-            this.labelTotalPrice.Location = new System.Drawing.Point(375, 419);
+            this.labelTotalPrice.Location = new System.Drawing.Point(375, 393);
             this.labelTotalPrice.Name = "labelTotalPrice";
-            this.labelTotalPrice.Size = new System.Drawing.Size(73, 13);
+            this.labelTotalPrice.Size = new System.Drawing.Size(99, 20);
             this.labelTotalPrice.TabIndex = 5;
             this.labelTotalPrice.Text = "Total Price:";
             // 
@@ -138,6 +139,8 @@
             this.buttonPlus.TabIndex = 7;
             this.buttonPlus.Text = "+";
             this.buttonPlus.UseVisualStyleBackColor = false;
+            this.buttonPlus.Visible = false;
+            this.buttonPlus.Click += new System.EventHandler(this.ButtonPlus_Click);
             // 
             // buttonMinus
             // 
@@ -151,13 +154,15 @@
             this.buttonMinus.TabIndex = 8;
             this.buttonMinus.Text = "-";
             this.buttonMinus.UseVisualStyleBackColor = false;
+            this.buttonMinus.Visible = false;
+            this.buttonMinus.Click += new System.EventHandler(this.ButtonMinus_Click);
             // 
             // buttonLogin
             // 
             this.buttonLogin.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
             this.buttonLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonLogin.ForeColor = System.Drawing.Color.White;
-            this.buttonLogin.Location = new System.Drawing.Point(264, 22);
+            this.buttonLogin.Location = new System.Drawing.Point(264, 16);
             this.buttonLogin.Name = "buttonLogin";
             this.buttonLogin.Size = new System.Drawing.Size(75, 23);
             this.buttonLogin.TabIndex = 10;
@@ -170,12 +175,13 @@
             this.buttonRemoveAll.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
             this.buttonRemoveAll.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonRemoveAll.ForeColor = System.Drawing.Color.White;
-            this.buttonRemoveAll.Location = new System.Drawing.Point(264, 244);
+            this.buttonRemoveAll.Location = new System.Drawing.Point(537, 346);
             this.buttonRemoveAll.Name = "buttonRemoveAll";
             this.buttonRemoveAll.Size = new System.Drawing.Size(75, 23);
             this.buttonRemoveAll.TabIndex = 11;
             this.buttonRemoveAll.Text = "Remove All";
             this.buttonRemoveAll.UseVisualStyleBackColor = false;
+            this.buttonRemoveAll.Click += new System.EventHandler(this.ButtonRemoveAll_Click);
             // 
             // label2
             // 
@@ -196,10 +202,11 @@
             this.dGVShoppingList.AllowUserToResizeColumns = false;
             this.dGVShoppingList.AllowUserToResizeRows = false;
             this.dGVShoppingList.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dGVShoppingList.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dGVShoppingList.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.Gray;
             dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -208,14 +215,14 @@
             this.dGVShoppingList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.Gray;
             dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dGVShoppingList.DefaultCellStyle = dataGridViewCellStyle5;
             this.dGVShoppingList.EnableHeadersVisualStyles = false;
-            this.dGVShoppingList.Location = new System.Drawing.Point(378, 69);
+            this.dGVShoppingList.Location = new System.Drawing.Point(378, 88);
             this.dGVShoppingList.MultiSelect = false;
             this.dGVShoppingList.Name = "dGVShoppingList";
             this.dGVShoppingList.ReadOnly = true;
@@ -228,9 +235,21 @@
             dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dGVShoppingList.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.dGVShoppingList.RowHeadersVisible = false;
-            this.dGVShoppingList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dGVShoppingList.Size = new System.Drawing.Size(234, 337);
+            this.dGVShoppingList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+            this.dGVShoppingList.Size = new System.Drawing.Size(234, 252);
             this.dGVShoppingList.TabIndex = 13;
+            // 
+            // labelShoppinglist
+            // 
+            this.labelShoppinglist.AutoSize = true;
+            this.labelShoppinglist.BackColor = System.Drawing.Color.Transparent;
+            this.labelShoppinglist.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelShoppinglist.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
+            this.labelShoppinglist.Location = new System.Drawing.Point(376, 72);
+            this.labelShoppinglist.Name = "labelShoppinglist";
+            this.labelShoppinglist.Size = new System.Drawing.Size(107, 13);
+            this.labelShoppinglist.TabIndex = 14;
+            this.labelShoppinglist.Text = "Shoppinglist of ...";
             // 
             // BillsScreen
             // 
@@ -239,6 +258,7 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.ClientSize = new System.Drawing.Size(624, 441);
+            this.Controls.Add(this.labelShoppinglist);
             this.Controls.Add(this.dGVShoppingList);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.buttonRemoveAll);
@@ -272,5 +292,6 @@
         private System.Windows.Forms.Button buttonRemoveAll;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DataGridView dGVShoppingList;
+        private System.Windows.Forms.Label labelShoppinglist;
     }
 }
